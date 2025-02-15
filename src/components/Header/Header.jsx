@@ -46,7 +46,7 @@ function Header() {
                             <Logo width='70px' />
                         </Link>
                     </div>
-                    
+
                     <ul className="flex ml-auto" >
                         {navItems.map((item) =>
                             item.active ? (
@@ -58,7 +58,7 @@ function Header() {
                                     </button>
                                 </li>
                             ) : null
-                        )}               
+                        )}
                         {authStatus && (
                             <li>
                                 <LogOutBtn></LogOutBtn>
@@ -67,9 +67,8 @@ function Header() {
                     </ul>
                 </nav>
             </Container>
-                      
-        </header>
-    )               
-}
 
+        </header>
+    )
+}
 export default Header 

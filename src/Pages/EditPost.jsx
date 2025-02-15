@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import { Container, Postform ,Button } from '../components'
+import { Container, Postform, Button } from '../components'
 import appwriteService from '../Appwrite/config'
 import { useNavigate, useParams } from 'react-router-dom'
 
 function EditPost() {
-    
+
     const [post, setposts] = useState(null)
     const { slug } = useParams()
     const navigate = useNavigate()
-    
+
     useEffect(() => {
         if (slug) {
             appwriteService.getPost(slug).then((post) => {
@@ -20,7 +20,8 @@ function EditPost() {
             navigate('/')
         }
     }, [slug, navigate])
-     
+
+
     return (
         post ?
             <div className='py-8' >
@@ -30,6 +31,6 @@ function EditPost() {
             </div>
             : null
     )
-     
+
 }
 export default EditPost

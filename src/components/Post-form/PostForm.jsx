@@ -7,13 +7,14 @@ import { useSelector } from 'react-redux';
 
 function Postform({ post }) {
 
+    console.log("get the post" + post);
+
     const { register, handleSubmit, watch, setValue, control, getValues } = useForm({
         defaultValues: {
             title: post?.title || "",
             slug: post?.$id || "",
             content: post?.content || "",
             status: post?.status || "active",
-
         },
     })
 
@@ -21,9 +22,9 @@ function Postform({ post }) {
     const userData = useSelector(state => state.auth.userData)
 
     const submit = async (data) => {
-
         if (post) {
-            const file = data.image[0] ? await appwriteService.uploadFile(data.image[0]) : null;
+
+            const file = data.image[0] ? await appwriteService.FileUpload(data.image[0]) : null;
 
             if (file) {
                 appwriteService.deleteFile(post.featuredImage);
@@ -35,9 +36,12 @@ function Postform({ post }) {
             });
 
             if (dbPost) {
-                navigate(`/post/${dbPost.$id}`);
+                // navigate(`/post/${dbPost.$id}`);
+                navigate(`/post/all-posts`);
             }
+
         } else {
+
             const file = await appwriteService.FileUpload(data.image[0]);
 
             if (file) {
